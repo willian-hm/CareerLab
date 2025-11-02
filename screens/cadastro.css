@@ -1,0 +1,136 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+:root {
+  --azul-escuro: #085c67;
+  --azul: #087788;
+  --turquesa: #00cbb5;
+  --cinza: #323b3b;
+  --cinza-claro: #f2f6f6;
+  --amarelo: #fdbc29;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Container do formulário */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Título */
+.container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1f3b6e; /* Azul escuro, combine com a identidade */
+}
+
+/* Mensagem de sucesso/erro */
+.mensagem {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #e0f0d9;
+    color: #2e7d32;
+}
+
+/* Labels e inputs */
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="password"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    outline: none;
+    border-color: #1f3b6e;
+}
+
+/* Textarea */
+form textarea {
+    resize: none;
+}
+
+/* Botão */
+form button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--amarelo);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: var(--azul);
+}
+
+/* Preview da foto */
+#preview-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#preview {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid #1f3b6e;
+}
+
+/* Pequena recomendação de foto */
+small {
+    display: block;
+    margin-top: 3px;
+    color: gray;
+    font-size: 12px;
+}
+
+/* Responsivo */
+@media screen and (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+    #preview {
+        width: 120px;
+        height: 120px;
+    }
+}

@@ -1,0 +1,15 @@
+:root {
+  --azul-escuro: #085c67;
+  --azul: #087788;
+  --turquesa: #00cbb5;
+  --cinza: #323b3b;
+  --cinza-claro: #f2f6f6;
+  --amarelo: #fdbc29;
+}
+/* FOOTER */
+footer {
+  background: var(--azul-escuro);
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
