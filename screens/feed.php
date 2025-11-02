@@ -1,76 +1,64 @@
 <?php
-// Inclui validação de sessão para qualquer tipo de usuário
-include "../assets/incs/valida-sessao.php";
+include "../assets/incs/valida-sessao.php"; // garante que só usuários logados acessam
+require_once "../assets/src/PostagemDAO.php";
+require_once "../assets/src/AreaDAO.php";
+
+$areas = AreaDAO::listarAreas();
+$filtroArea = $_GET['filtro'] ?? null;
+
+$posts = PostagemDAO::listarPosts($filtroArea);
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Feed</title>
-    <link rel="stylesheet" href="cadastro.css">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .main-content {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 50px;
-        }
-
-        footer {
-            margin-top: auto;
-        }
-
-        .btn-logout {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-weight: bold;
-            background-color: #1f3b6e;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
-        .btn-logout:hover {
-            background-color: #16325a;
-        }
-
-        img.profile {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #1f3b6e;
-            margin-bottom: 20px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed - CareerLab</title>
+    <link rel="stylesheet" href="feed.css">
 </head>
 <body>
-    <?php include "../assets/Components/NavBar.php"; ?>
+    <?php include "../assets/Components/NavLogada.php"; ?>
 
-    <div class="main-content">
-        <h1>Bem-vindo(a), <?= isset($nome) ? htmlspecialchars($nome) : 'Usuário' ?>!</h1>
-        <p>Tipo de conta: <?= isset($tipo) ? ucfirst($tipo) : '' ?></p>
+    <main class="feed-container">
 
-        <?php if(isset($foto) && $foto): ?>
-            <img src="../uploads/<?= htmlspecialchars($foto) ?>" alt="Foto de perfil" class="profile">
+        <!-- Cabeçalho do feed: título, filtro e botão -->
+        <div class="feed-header">
+            <h1>Feed de Posts</h1>
+
+            <div class="feed-actions">
+                <form method="GET" style="display:inline-block;">
+                    <select name="filtro" onchange="this.form.submit()">
+                        <option value="">Todas as Áreas</option>
+                        <?php foreach ($areas as $area): ?>
+                            <option value="<?= $area['idarea'] ?>" <?= ($filtroArea == $area['idarea']) ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($area['nome_a']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
+
+                <a href="cadastro-post.php" class="btn-post">Criar Post</a>
+            </div>
+        </div>
+
+        <!-- Lista de posts -->
+        <?php if ($posts): ?>
+            <?php foreach ($posts as $post): ?>
+                <div class="post-card">
+                    <img src="../uploads/<?= htmlspecialchars($post['foto']) ?>" alt="Post de <?= htmlspecialchars($post['nome_u']) ?>">
+
+                    <div class="post-content">
+                        <div class="usuario"><?= htmlspecialchars($post['nome_u']) ?></div>
+                        <div class="area"><?= htmlspecialchars($post['nome_a'] ?? 'Geral') ?></div>
+                        <div class="legenda"><?= nl2br(htmlspecialchars($post['legenda'])) ?></div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nenhum post encontrado.</p>
         <?php endif; ?>
-
-        <a href="../assets/incs/logout.php" class="btn-logout">Sair</a>
-    </div>
+    </main>
 
     <?php include "../assets/Components/Footer.php"; ?>
 </body>

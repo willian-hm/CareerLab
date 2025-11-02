@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['mensagem'] = $e->getMessage();
     }
 
-    header("Location: cadastro-usuario.php");
+    header("Location: feed.php");
     exit;
 } else {
     header("Location: cadastro-usuario.php");

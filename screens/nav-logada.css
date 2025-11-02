@@ -1,0 +1,105 @@
+nav {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.navbar-logo a {
+    font-weight: 700;
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 25px;
+    position: relative;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--cinza);
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--azul);
+}
+
+.user-menu img.user-foto {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--azul);
+    cursor: pointer;
+}
+
+.user-menu .dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: #fff;
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    min-width: 150px;
+    z-index: 100;
+}
+
+.user-menu .dropdown li {
+    padding: 8px 16px;
+}
+
+.user-menu .dropdown li a {
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.user-menu .dropdown li a:hover {
+    color: var(--azul);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--azul);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(255,255,255,0.95);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .nav-links.show {
+        display: flex;
+    }
+    .menu-toggle {
+        display: block;
+    }
+}
