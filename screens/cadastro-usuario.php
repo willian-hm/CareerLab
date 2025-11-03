@@ -20,6 +20,8 @@ unset($_SESSION['mensagem']);
 
 <body>
     <?php include "../assets/Components/NavBar.php"; ?>
+<main>
+
 
     <div class="container">
         <h1>Cadastro de Usuário</h1>
@@ -61,6 +63,7 @@ unset($_SESSION['mensagem']);
             <button type="submit">Cadastrar</button>
         </form>
     </div>
+    </main>
 
     <?php include "../assets/Components/Footer.php"; ?>
 

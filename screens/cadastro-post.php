@@ -1,5 +1,6 @@
 <?php
-session_start();
+
+require_once "../assets/incs/valida-sessao.php";
 require_once "../assets/src/AreaDAO.php";
 
 $areas = AreaDAO::listarAreas();
@@ -18,7 +19,7 @@ unset($_SESSION['mensagem']);
 </head>
 
 <body>
-    <?php include_once "../assets/Components/NavBar.php"; ?>
+    <?php include_once "../assets/Components/NavLogada.php"; ?>
 
     <main class="post-container">
         <section class="post-card">

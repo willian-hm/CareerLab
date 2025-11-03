@@ -6,7 +6,20 @@
   --cinza-claro: #f2f6f6;
   --amarelo: #fdbc29;
 }
-/* FOOTER */
+
+/* no body ou container principal */
+body {
+  min-height: 100vh;          /* ocupa toda a altura da tela */
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex: 1;                    /* faz o conteúdo ocupar o espaço restante */
+}
+
+/* seu footer */
 footer {
   background: var(--azul-escuro);
   color: white;

@@ -1,35 +1,25 @@
 <?php
 require_once "../assets/src/MentorDAO.php";
+require_once "../assets/src/Util.php";
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email_mentor'] ?? '';
-    $senha = $_POST['senha_mentor'] ?? '';
-
     try {
-        $mentor = MentorDAO::buscarPorEmail($email);
+        // Salva foto se enviada
+        $foto = Util::salvarFoto($_FILES['foto'] ?? null);
+        $_POST['foto'] = $foto;
 
-        if(!$mentor) {
-            throw new Exception("Email não encontrado!");
-        }
+        // Cadastra mentor usando DAO
+        MentorDAO::cadastrarMentor($_POST);
 
-        if(!password_verify($senha, $mentor['senha_mentor'])) {
-            throw new Exception("Senha incorreta!");
-        }
-
-        // Cria cookies
-        setcookie("idmentor", $mentor['idmentor'], time()+3600, "/");
-        setcookie("nomementor", $mentor['nome'], time()+3600, "/");
-        setcookie("fotomentor", $mentor['foto'] ?? "", time()+3600, "/");
-
-        header("Location: feed.php");
-        exit;
-    } catch(Exception $e) {
+        $_SESSION['mensagem'] = "Mentor cadastrado com sucesso!";
+    } catch (Exception $e) {
         $_SESSION['mensagem'] = $e->getMessage();
-        header("Location: login-mentor.php");
-        exit;
     }
+
+    header("Location: cadastro-mentor.php");
+    exit;
 } else {
-    header("Location: login-mentor.php");
+    header("Location: cadastro-mentor.php");
     exit;
 }

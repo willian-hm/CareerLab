@@ -1,0 +1,206 @@
+/* editar-perfil.css */
+
+/* Paleta de cores */
+:root {
+  --azul-escuro: #085c67;
+  --azul: #087788;
+  --turquesa: #00cbb5;
+  --cinza: #323b3b;
+  --cinza-claro: #f2f6f6;
+  --amarelo: #fdbc29;
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--cinza-claro);
+  color: var(--cinza);
+}
+
+.perfil-container {
+  max-width: 800px;
+  margin: 80px auto 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: var(--azul-escuro);
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--azul);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.foto-atual {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+
+.foto-atual img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--azul);
+}
+
+/* Container do input file */
+.input-file-container {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* opcional */
+  margin: 0 auto 15px auto;
+}
+
+/* Input file real escondido */
+.input-file-container input[type="file"] {
+  opacity: 0;
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+/* Botão customizado */
+.input-file-label {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: var(--azul);
+  color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.input-file-label:hover {
+  background-color: var(--azul-escuro);
+}
+
+/* Texto do arquivo selecionado */
+.input-file-name {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--cinza);
+  text-align: center;
+}
+
+.btn-container {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 100%;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn-salvar {
+  background-color: var(--azul);
+  color: #fff;
+}
+
+.btn-salvar:hover {
+  background-color: var(--azul-escuro);
+}
+
+.btn-cancelar {
+  background-color: var(--cinza-claro);
+  color: var(--cinza);
+  border: 1px solid #ccc;
+}
+
+.btn-cancelar:hover {
+  background-color: #e0e8e8;
+}
+
+.mensagem {
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.mensagem.sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.mensagem.erro {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .btn-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

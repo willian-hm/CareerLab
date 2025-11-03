@@ -4,7 +4,7 @@ require_once "Util.php";
 
 class UsuarioDAO
 {
-
+    // Verifica se nome de usuário já existe
     public static function nomeExiste($nome_u)
     {
         $conexao = ConexaoBD::conectar();
@@ -15,16 +15,15 @@ class UsuarioDAO
         return $row['total'] > 0;
     }
 
+    // Cadastrar usuário
     public static function cadastrarUsuario($dados, $arquivoFoto)
     {
         $conexao = ConexaoBD::conectar();
 
-        // Verifica se o nome já existe
         if (self::nomeExiste($dados['nome_u'])) {
             throw new Exception("O nome de usuário já está em uso. Escolha outro.");
         }
 
-        // Verifica idade mínima
         $dataNascimento = new DateTime($dados['datanascimento_u']);
         $hoje = new DateTime();
         $idade = $hoje->diff($dataNascimento)->y;
@@ -32,15 +31,12 @@ class UsuarioDAO
             throw new Exception("Você precisa ter 18 anos ou mais para se cadastrar.");
         }
 
-        // Verifica senha
         if ($dados['senha_u'] !== $dados['confirma_senha']) {
             throw new Exception("As senhas não coincidem.");
         }
 
-        // Salva foto
         $nomeFoto = Util::salvarFoto($arquivoFoto);
 
-        // Inserir no banco
         $sql = "INSERT INTO usuario 
                 (nome_u, email_u, datanascimento_u, bio_u, areaespecializacao, senha_u, foto)
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -60,6 +56,29 @@ class UsuarioDAO
         return true;
     }
 
+    // Buscar usuário por ID
+    public static function buscarPorId($id)
+    {
+        $conexao = ConexaoBD::conectar();
+
+        $sql = "
+            SELECT u.idusuario, u.nome_u AS nome, u.email_u, u.foto, u.bio_u AS bio,
+                   a.nome_a AS area, 
+                   (SELECT COUNT(*) FROM seguido WHERE idseguido = u.idusuario) AS seguidores,
+                   (SELECT COUNT(*) FROM seguido WHERE idusuario = u.idusuario) AS seguindo
+            FROM usuario u
+            LEFT JOIN areaespecializacao a ON u.areaespecializacao = a.idarea
+            WHERE u.idusuario = :id
+        ";
+
+        $stmt = $conexao->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Buscar usuário por nome
     public static function buscarPorNome($nome_u)
     {
         $conexao = ConexaoBD::conectar();
@@ -68,4 +87,40 @@ class UsuarioDAO
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Atualizar dados do usuário
+    public static function atualizarUsuario($id, $dados, $arquivoFoto = null)
+    {
+        $conexao = ConexaoBD::conectar();
+
+        // Campos básicos
+        $sql = "UPDATE usuario SET nome_u = ?, email_u = ?, bio_u = ?, areaespecializacao = ?";
+        $params = [
+            $dados['nome_u'],
+            $dados['email_u'],
+            $dados['bio_u'] ?? "",
+            $dados['areaespecializacao']
+        ];
+
+        // Se enviar nova foto
+        if ($arquivoFoto && $arquivoFoto['tmp_name']) {
+            $nomeFoto = Util::salvarFoto($arquivoFoto);
+            $sql .= ", foto = ?";
+            $params[] = $nomeFoto;
+        }
+
+        $sql .= " WHERE idusuario = ?";
+        $params[] = $id;
+
+        $stmt = $conexao->prepare($sql);
+        return $stmt->execute($params);
+    }
+
+    // Excluir usuário
+    public static function excluir($idUsuario) {
+        $conexao = ConexaoBD::conectar();
+        $sql = "DELETE FROM usuario WHERE idusuario = :id";
+        $stmt = $conexao->prepare($sql);
+        $stmt->bindParam(':id', $idUsuario, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }

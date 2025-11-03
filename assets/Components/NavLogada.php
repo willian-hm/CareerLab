@@ -1,19 +1,48 @@
-    <link rel="stylesheet" href="nav-logada.css" />    
+    <?php
+
+    $foto = $_SESSION['fotousuario'];
+    $nome = $_SESSION['nomeusuario'];
+
+    ?>
+    <link rel="stylesheet" href="nav-logada.css" />   
+    
+    <style>
+        .foto-perfilnav {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .foto-perfilnav:hover {
+            cursor: pointer;
+            opacity: 0.8;
+            border: 1px solid #ccc;
+        }
+    </style>
     <nav>
     <div class="navbar-logo">
          <a href="feed.php"><img src="../img/logo.png" alt="Logo"></a>
     </div>
 
     <ul class="nav-links">
+         <li><a href="feed.php">Feed</a></li>
         <li><a href="mentorias.php">Mentorias</a></li>
         <li><a href="desafios.php">Desafios</a></li>
         <li><a href="ranking.php">Ranking</a></li>
+        <li><a href="pesquisar.php">Pesquisar</a></li>
 
         <!-- Menu do usuário -->
         <li class="user-menu">
-            <img src="../uploads/<?= htmlspecialchars($foto ?? 'default.png') ?>" alt="<?= htmlspecialchars($nome ?? 'Usuário') ?>" class="user-foto">
+             <?php
+                $fotoPerfil = !empty($usuario['foto']) && file_exists("../uploads/" . $usuario['foto'])
+                    ? "../uploads/" . htmlspecialchars($usuario['foto'])
+                    : "../uploads/default.png";
+                ?>
+                <img src="<?= $fotoPerfil ?>" alt="Foto do usuário" class="foto-perfilnav">
             <ul class="dropdown">
-                <li><a href="perfil.php">Perfil</a></li>
+                <li><b><?= htmlspecialchars($_SESSION['nomeusuario']) ?></b></li>
+                <li><a href="meu-perfil.php">Perfil</a></li>
                 <li><a href="configuracoes.php">Configurações</a></li>
                 <li><a href="logout.php">Sair</a></li>
             </ul>

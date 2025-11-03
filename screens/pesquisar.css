@@ -1,0 +1,151 @@
+:root {
+  --azul-escuro: #085c67;
+  --azul: #087788;
+  --turquesa: #00cbb5;
+  --cinza: #323b3b;
+  --cinza-claro: #f2f6f6;
+  --amarelo: #fdbc29;
+  --amarelo-hover: #fcca66;
+}
+
+/* Layout base */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--cinza-claro);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 100px auto 40px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--azul-escuro);
+  font-weight: 700;
+}
+
+/* Form de pesquisa */
+form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+a {
+  text-decoration: none;
+}
+
+form input[type="text"] {
+  width: 60%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 1px solid var(--azul);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus {
+  border-color: var(--turquesa);
+  box-shadow: 0 0 5px rgba(0, 203, 181, 0.5);
+}
+
+form button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--azul);
+  color: white;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background-color: var(--azul-escuro);
+}
+
+/* Cards de usuário */
+.usuarios-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.usuario-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 220px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.usuario-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.usuario-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid var(--turquesa);
+}
+
+.usuario-card span {
+  font-weight: 600;
+  color: var(--cinza);
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* Botão seguir */
+.usuario-card .btn-seguir {
+  width: 100%;
+  padding: 8px 20px;
+  border-radius: 25px;
+  border: none;
+  background-color: var(--amarelo);
+  color: var(--cinza-claro);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+
+.usuario-card .btn-seguir:hover {
+  background-color: var(--amarelo-hover);
+  color: white;
+}
+
+/* Sem usuários */
+p.sem-usuarios {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  margin-top: 30px;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .usuario-card {
+    width: 90%;
+  }
+  form input[type="text"] {
+    width: 70%;
+  }
+}

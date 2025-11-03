@@ -1,30 +1,31 @@
 <?php
-// Inicia a sessão
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// Verifica se algum cookie de login existe
-if (!isset($_COOKIE['idusuario']) && !isset($_COOKIE['idmentor']) && !isset($_COOKIE['idempresa'])) {
-    $_SESSION['msg'] = "Para acessar essa página, é necessário fazer login.";
-    header("Location: quem-e-voce.php");
+// Verifica login
+if (!isset($_SESSION['idusuario']) && !isset($_SESSION['idmentor']) && !isset($_SESSION['idempresa'])) {
+    $_SESSION['mensagem'] = "Para acessar essa página, é necessário fazer login.";
+    header("Location: login-usuario.php");
     exit;
 }
 
-// Inicializa variáveis com isset para evitar warnings
+// Inicializa variáveis do usuário logado
 $id = $nome = $foto = $tipo = null;
 
-if (isset($_COOKIE['idusuario'])) {
-    $id = $_COOKIE['idusuario'];
-    $nome = $_COOKIE['nomeusuario'] ?? null;
-    $foto = $_COOKIE['fotousuario'] ?? null;
+if (isset($_SESSION['idusuario'])) {
+    $id = $_SESSION['idusuario'];
+    $nome = $_SESSION['nomeusuario'] ?? "Usuário";
+    $foto = $_SESSION['fotousuario'] ?? "default.png";
     $tipo = "usuario";
-} elseif (isset($_COOKIE['idmentor'])) {
-    $id = $_COOKIE['idmentor'];
-    $nome = $_COOKIE['nomementor'] ?? null;
-    $foto = $_COOKIE['fotomentor'] ?? null;
+} elseif (isset($_SESSION['idmentor'])) {
+    $id = $_SESSION['idmentor'];
+    $nome = $_SESSION['nomementor'] ?? "Mentor";
+    $foto = $_SESSION['fotomentor'] ?? "default.png";
     $tipo = "mentor";
-} elseif (isset($_COOKIE['idempresa'])) {
-    $id = $_COOKIE['idempresa'];
-    $nome = $_COOKIE['nomeempresa'] ?? null;
-    $foto = $_COOKIE['fotoempresa'] ?? null;
+} elseif (isset($_SESSION['idempresa'])) {
+    $id = $_SESSION['idempresa'];
+    $nome = $_SESSION['nomeempresa'] ?? "Empresa";
+    $foto = $_SESSION['fotoempresa'] ?? "default.png";
     $tipo = "empresa";
 }

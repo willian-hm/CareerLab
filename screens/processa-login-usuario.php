@@ -1,37 +1,33 @@
 <?php
-require_once "../assets/src/UsuarioDAO.php";
 session_start();
+require_once "../assets/src/UsuarioDAO.php"; // DAO que consulta usuários
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome = $_POST['nome_u'] ?? '';
-    $senha = $_POST['senha_u'] ?? '';
+$nome_u = $_POST['nome_u'] ?? null;
+$senha_u = $_POST['senha_u'] ?? null;
 
-    try {
-        // Busca usuário pelo nome
-        $usuario = UsuarioDAO::buscarPorNome($nome);
-
-        if(!$usuario) {
-            throw new Exception("Nome de usuário não encontrado!");
-        }
-
-        if(!password_verify($senha, $usuario['senha_u'])) {
-            throw new Exception("Senha incorreta!");
-        }
-
-        // Login bem-sucedido: cria cookies
-        setcookie("idusuario", $usuario['idusuario'], time()+3600, "/");
-        setcookie("nomeusuario", $usuario['nome_u'], time()+3600, "/");
-        setcookie("fotousuario", $usuario['foto'], time()+3600, "/");
-
-        header("Location: feed.php");
-        exit;
-
-    } catch (Exception $e) {
-        $_SESSION['mensagem'] = $e->getMessage();
-        header("Location: login-usuario.php");
-        exit;
-    }
-} else {
+// Verifica campos
+if (!$nome_u || !$senha_u) {
+    $_SESSION['mensagem'] = "Preencha todos os campos!";
     header("Location: login-usuario.php");
     exit;
 }
+
+// Busca usuário no banco
+$usuario = UsuarioDAO::buscarPorNome($nome_u); // método que retorna usuário pelo nome
+
+if (!$usuario || !password_verify($senha_u, $usuario['senha_u'])) {
+    $_SESSION['mensagem'] = "Usuário ou senha incorretos!";
+    header("Location: login-usuario.php");
+    exit;
+}
+
+// Login bem-sucedido: salva dados na sessão
+$_SESSION['idusuario'] = $usuario['idusuario'];
+$_SESSION['nomeusuario'] = $usuario['nome_u'];
+
+// Se existir foto, salva o nome do arquivo; senão null
+$_SESSION['fotousuario'] = $usuario['foto'];
+
+// Redireciona para feed
+header("Location: feed.php");
+exit;
