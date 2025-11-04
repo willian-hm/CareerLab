@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once "../assets/src/MentorDAO.php";
 require_once "../assets/src/AreaDAO.php";
 
 $areas = AreaDAO::listarAreas();
@@ -10,27 +9,27 @@ unset($_SESSION['mensagem']);
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Mentor</title>
     <link rel="stylesheet" href="cadastro.css">
 </head>
-
-<body>
+<main>
     <?php include "../assets/Components/NavBar.php"; ?>
-
+    <main>
     <div class="container">
         <h1>Cadastro de Mentor</h1>
+
         <?php if ($mensagem): ?>
             <p class="mensagem"><?= $mensagem ?></p>
         <?php endif; ?>
+
         <form method="POST" enctype="multipart/form-data" action="processa-mentor.php">
 
             <label>Foto de Perfil:</label>
             <input type="file" name="foto" accept="image/*" onchange="previewImage(event)">
-            <small>Recomendado imagens 600x600</small>
+            <small>Recomendado: imagens 600x600</small>
             <div id="preview-container">
                 <img id="preview" src="#" alt="Preview" style="display:none;">
             </div>
@@ -61,7 +60,7 @@ unset($_SESSION['mensagem']);
             <button type="submit">Cadastrar</button>
         </form>
     </div>
-
+                </main>
     <?php include "../assets/Components/Footer.php"; ?>
 
     <script>
@@ -81,5 +80,4 @@ unset($_SESSION['mensagem']);
         }
     </script>
 </body>
-
 </html>

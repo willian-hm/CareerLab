@@ -46,8 +46,10 @@ $usuario['seguindo'] = $usuario['seguindo'] ?? 0;
             <p class="area"><?= htmlspecialchars($usuario['area']) ?></p>
             <p class="bio"><?= htmlspecialchars($usuario['bio']) ?></p>
             <div class="seguidores">
-                <span><strong><?= $usuario['seguidores'] ?></strong> Seguidores</span>
-                <span><strong><?= $usuario['seguindo'] ?></strong> Seguindo</span>
+               
+                <a href="seguidores.php"><span><strong><?= $usuario['seguidores'] ?></strong> Seguidores</span></a>
+                
+                <a href="seguindo.php"><span><strong><?= $usuario['seguindo'] ?></strong> Seguindo</span></a>
             </div>
             <div class="botoes">
                 <a href="editar-perfil.php" class="btn editar">Editar informações</a>

@@ -34,10 +34,9 @@
 
         <!-- Menu do usuário -->
         <li class="user-menu">
-             <?php
-                $fotoPerfil = !empty($usuario['foto']) && file_exists("../uploads/" . $usuario['foto'])
-                    ? "../uploads/" . htmlspecialchars($usuario['foto'])
-                    : "../uploads/default.png";
+                <?php
+                $fotoPerfil = !empty($foto) && file_exists("../uploads/" . $foto
+                    ) ? "../uploads/" . htmlspecialchars($foto) : "../uploads/default.png";
                 ?>
                 <img src="<?= $fotoPerfil ?>" alt="Foto do usuário" class="foto-perfilnav">
             <ul class="dropdown">

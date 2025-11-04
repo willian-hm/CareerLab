@@ -1,0 +1,104 @@
+/* assets/css/painel-mentor.css */
+:root {
+    --brand:#1f3b6e;
+    --muted:#666;
+    --bg:#f7f9fc;
+    --card:#fff;
+}
+
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+
+body{
+    margin:0;
+    background:var(--bg);
+    color:#222;
+    font-family: Poppins, sans-serif;
+}
+
+/* Nav */
+.nav-logada{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 20px;
+    background:var(--card);
+    border-bottom:1px solid #e6e9ef;
+}
+.nav-logada .brand{
+    font-weight:700;
+    color:var(--brand);
+    text-decoration:none;
+    font-size:18px;
+}
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #e6e9ef;
+}
+.avatar-placeholder{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#ddd;
+    color:#333;
+    font-weight:700;
+}
+.nav-username{font-weight:600;color:#333;margin-right:8px}
+.nav-link{color:var(--brand);text-decoration:none;font-size:14px;padding:6px 8px;border-radius:6px}
+.nav-link:hover{background:#eef3fb}
+
+/* Main container */
+.container{
+    max-width:1100px;
+    margin:28px auto;
+    padding:16px;
+    background:transparent;
+}
+
+/* Header */
+.panel-header h1{margin:0 0 4px 0;font-size:24px;color:var(--brand)}
+.subtitle{margin:0;color:var(--muted);font-size:14px}
+
+/* Actions */
+.actions{margin:16px 0;display:flex;gap:10px}
+.btn{
+    background:var(--brand);
+    color:#fff;
+    padding:8px 12px;
+    text-decoration:none;
+    border-radius:8px;
+    display:inline-block;
+}
+.btn-secondary{background:#fff;color:var(--brand);border:1px solid #dfe8f5}
+
+/* Tabela */
+.table-mentorias{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(20,30,50,0.04);
+}
+.table-mentorias th, .table-mentorias td{
+    padding:10px 12px;
+    border-bottom:1px solid #f0f2f6;
+    text-align:left;
+    font-size:14px;
+}
+.table-mentorias thead th{background:#fafbfc;color:var(--muted);font-weight:600}
+.table-mentorias tbody tr:hover{background:#fbfdff}
+.empty{background:#fff;padding:16px;border-radius:8px;box-shadow:0 2px 6px rgba(20,30,50,0.04)}
+
+/* Footer */
+.site-footer{margin-top:28px;padding:16px 0;text-align:center;color:var(--muted);font-size:13px;background:transparent}
