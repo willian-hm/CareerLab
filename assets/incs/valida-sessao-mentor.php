@@ -9,3 +9,4 @@ if (!isset($_SESSION['idmentor'])) {
 
 $idmentor = $_SESSION['idmentor'];
 $nomementor = $_SESSION['nomementor'];
+$fotomentor = $_SESSION['fotomentor'];
