@@ -1,89 +1,80 @@
 <?php
-include_once "../assets/incs/valida-sessao.php";
-require_once "../assets/src/ConexaoBD.php";
+include_once "../assets/incs/valida-sessao-mentor.php";
+require_once "../assets/src/MentoriaDAO.php";
+require_once "../assets/src/AreaDAO.php";
 
-// Verifica se o usuário é mentor
-if ($_SESSION['tipo'] != 'mentor') {
-    $_SESSION['mensagem'] = "Acesso restrito a mentores.";
-    header("Location: ../screens/feed.php");
-    exit;
+$mensagem = "";
+
+// Carrega as áreas de especialização
+try {
+    $areas = AreaDAO::listarAreas(); // <-- ADICIONA ESTA LINHA
+} catch (Exception $e) {
+    $areas = [];
+    $mensagem = "Erro ao carregar áreas: " . $e->getMessage();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titulo = trim($_POST['titulo']);
-    $descricao = trim($_POST['descricao']);
-    $area = trim($_POST['area']);
-    $data = $_POST['data'];
-    $horario = $_POST['horario'];
-    $vaga_limite = $_POST['vaga_limite'];
-    $local = trim($_POST['local']);
-    $mentor_id = $_SESSION['idusuario'];
-
     try {
-        $pdo = ConexaoBD::conectar();
-        $stmt = $pdo->prepare("
-            INSERT INTO mentoria (titulo, descricao, area, data, horario, mentor_id, vaga_limite, local, status)
-            VALUES (:titulo, :descricao, :area, :data, :horario, :mentor_id, :vaga_limite, :local, 'ativa')
-        ");
-        $stmt->execute([
-            ':titulo' => $titulo,
-            ':descricao' => $descricao,
-            ':area' => $area,
-            ':data' => $data,
-            ':horario' => $horario,
-            ':mentor_id' => $mentor_id,
-            ':vaga_limite' => $vaga_limite,
-            ':local' => $local
-        ]);
-
-        $_SESSION['mensagem'] = "Mentoria cadastrada com sucesso!";
-        header("Location: listar-mentorias.php");
-        exit;
-    } catch (PDOException $e) {
-        $erro = "Erro ao cadastrar mentoria: " . $e->getMessage();
+        MentoriaDAO::cadastrar($_POST, $idmentor);
+        $mensagem = "Mentoria cadastrada com sucesso!";
+    } catch (Exception $e) {
+        $mensagem = "Erro: " . $e->getMessage();
     }
 }
 ?>
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Cadastrar Mentoria</title>
-    <link rel="stylesheet" href="../assets/css/estilo.css">
+    <link rel="stylesheet" href="cadastro-mentoria.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Cadastrar Mentoria</h1>
+    <?php include "../assets/Components/NavBarLogadaMentor.php"; ?>
 
-        <?php if (isset($erro)): ?>
-            <div class="erro"><?= htmlspecialchars($erro) ?></div>
-        <?php endif; ?>
+    <main>
+        <div class="container">
+            <h1>Cadastrar Nova Mentoria</h1>
 
-        <form method="post" class="form-cadastro">
-            <label>Título:</label>
-            <input type="text" name="titulo" required>
+            <?php if ($mensagem): ?>
+                <p class="mensagem"><?= htmlspecialchars($mensagem) ?></p>
+            <?php endif; ?>
 
-            <label>Descrição:</label>
-            <textarea name="descricao" required></textarea>
+            <form method="POST" action="">
+                <label for="titulo">Título:</label>
+                <input type="text" name="titulo" id="titulo" required>
 
-            <label>Área:</label>
-            <input type="text" name="area" required>
+                <label for="descricao">Descrição:</label>
+                <textarea name="descricao" id="descricao" required></textarea>
 
-            <label>Data:</label>
-            <input type="date" name="data" required>
+                <label>Área de Especialização:</label>
+                <select name="idarea" required>
+                    <option value="">Selecione...</option>
+                    <?php foreach ($areas as $area): ?>
+                        <option value="<?= htmlspecialchars($area['idarea']) ?>">
+                            <?= htmlspecialchars($area['nome_a']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
 
-            <label>Horário:</label>
-            <input type="time" name="horario" required>
+                <label for="data">Data:</label>
+                <input type="date" name="data" id="data" required>
 
-            <label>Limite de Vagas:</label>
-            <input type="number" name="vaga_limite" min="1" required>
+                <label for="horario">Horário:</label>
+                <input type="time" name="horario" id="horario" required>
 
-            <label>Local / Link:</label>
-            <input type="text" name="local" placeholder="Ex: Sala 101 ou link Meet">
+                <label for="vaga_limite">Limite de Vagas:</label>
+                <input type="number" name="vaga_limite" id="vaga_limite" min="1" required>
 
-            <button type="submit" class="btn">Cadastrar</button>
-        </form>
-    </div>
+                <label for="local">Local / Link de Videoconferência:</label>
+                <input type="text" name="local" id="local" required>
+
+                <button type="submit" class="botao-salvar">Cadastrar Mentoria</button>
+                <a href="painel-mentor.php" class="botao-voltar">Voltar</a>
+            </form>
+        </div>
+    </main>
+
+    <?php include "../assets/Components/Footer.php"; ?>
 </body>
 </html>

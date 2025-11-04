@@ -1,57 +1,67 @@
 <?php
-if (!isset($_SESSION)) session_start();
+if (!isset($_SESSION))
+    session_start();
 ?>
 
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="painel-mentor.php" class="logo">CareerLab - Mentor</a>
-        <ul class="nav-links">
-            <li><a href="painel-mentor.php">Painel</a></li>
-            <li><a href="#">Minhas Mentorias</a></li>
-            <li><a href="#">Perfil</a></li>
-            <li><a href="logout-mentor.php" class="logout">Sair</a></li>
-        </ul>
-        <?php if(isset($_SESSION['fotomentor'])): ?>
-            <img src="../uploads/<?= $_SESSION['fotomentor'] ?>" alt="Foto" class="foto-perfil">
-        <?php endif; ?>
-    </div>
-</nav>
+<link rel="stylesheet" href="nav-logada.css" />
 
 <style>
-.navbar {
-    background: #1f3b6e;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.nav-container {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-}
-.logo {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
-}
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-}
-.nav-links a {
-    color: #fff;
-    text-decoration: none;
-}
-.logout {
-    color: #ff8c8c;
-}
-.foto-perfil {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+    .foto-perfilnav {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .foto-perfilnav:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        border: 1px solid #ccc;
+    }
 </style>
+<nav>
+    <div class="navbar-logo">
+        <a href="feed.php"><img src="../img/logo.png" alt="Logo"></a>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="painel-mentor.php">Painel do Mentor</a></li>
+
+        <!-- Menu do usuário -->
+        <li class="user-menu">
+            <?php
+            $fotoPerfil = !empty($fotomentor) && file_exists(
+                "../uploads/" . $fotomentor
+            ) ? "../uploads/" . htmlspecialchars($fotomentor) : "../uploads/default.png";
+            ?>
+            <img src="<?= $fotoPerfil ?>" alt="Foto do usuário" class="foto-perfilnav">
+            <ul class="dropdown">
+                <li><b><?= htmlspecialchars($_SESSION['nomementor']) ?></b></li>
+                <li><a href="logout-mentor.php">Sair</a></li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="menu-toggle">&#9776;</div>
+</nav>
+
+<script>
+    const userMenu = document.querySelector('.user-menu');
+    const dropdown = userMenu.querySelector('.dropdown');
+
+    userMenu.addEventListener('click', function (e) {
+        e.stopPropagation();
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function () {
+        dropdown.style.display = 'none';
+    });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+    });
+</script>
