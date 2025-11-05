@@ -53,18 +53,139 @@ p a:hover {
     background-color: #999;
 }
 
-.tabela-mentorias {
+
+.cards-mentorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card-mentoria {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    padding: 1.2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-mentoria:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+}
+
+.card-mentoria h3 {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+    color: #333;
+}
+
+.card-mentoria p {
+    margin: 0.3rem 0;
+    color: #555;
+}
+
+.status {
+    margin-top: 0.8rem;
+    align-self: flex-start;
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Cores de status */
+.status.ativa {
+    background-color: #d1f7c4;
+    color: #2e7d32;
+}
+
+.status.encerrada {
+    background-color: #ffe0e0;
+    color: #c62828;
+}
+
+.status.pendente {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
 }
 
-.tabela-mentorias th, .tabela-mentorias td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.tabela-mentorias th {
-    background-color: #f0f0f0;
+.fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: #555;
+    cursor: pointer;
 }
+
+.botao-editar {
+    display: inline-block;
+    background-color: var(--azul);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+.botao-editar:hover {
+    background-color: var(--azul-escuro);
+}
+
+
+button,
+a.botao-voltar,
+a.botao-excluir {
+  margin-top: 20px;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+a.botao-excluir {
+  background-color: #c62828;
+}
+
+a.botao-excluir:hover {
+  background-color: #a62020;
+  transform: translateY(-2px);
+}
+
+

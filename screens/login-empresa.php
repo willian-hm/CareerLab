@@ -20,7 +20,7 @@ unset($_SESSION['mensagem']);
         <?php if($mensagem) echo "<p class='mensagem'>$mensagem</p>"; ?>
         <form method="POST" action="processa-login-empresa.php">
             <label>CNPJ:</label>
-            <input type="email" name="cnpj" required>
+            <input type="text" name="cnpj" required>
 
             <label>Senha:</label>
             <input type="password" name="senha_empresa" required>

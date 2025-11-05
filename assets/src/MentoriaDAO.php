@@ -44,4 +44,48 @@ class MentoriaDAO
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function editar($dados)
+    {
+        $conexao = ConexaoBD::conectar();
+
+        $sql = "UPDATE mentoria 
+            SET titulo = ?, descricao = ?, idarea = ?, data = ?, horario = ?, vaga_limite = ?, local = ?, status = ?
+            WHERE idmentoria = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([
+            $dados['titulo'],
+            $dados['descricao'],
+            $dados['idarea'],
+            $dados['data'],
+            $dados['horario'],
+            $dados['vaga_limite'],
+            $dados['local'],
+            $dados['status'],
+            $dados['idmentoria']
+        ]);
+
+        return true;
+    }
+
+    public static function buscarPorId($id)
+    {
+        $conexao = ConexaoBD::conectar();
+        $sql = "SELECT * FROM mentoria WHERE idmentoria = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function excluir($idmentoria)
+    {
+        $conexao = ConexaoBD::conectar();
+        $sql = "DELETE FROM mentoria WHERE idmentoria = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([$idmentoria]);
+        return true;
+    }
+
+
+
 }

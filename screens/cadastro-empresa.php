@@ -20,47 +20,49 @@ unset($_SESSION['mensagem']);
 
 <body>
     <?php include "../assets/Components/NavBar.php"; ?>
+    <main>
+        <div class="container">
+            <h1>Cadastro de Empresa</h1>
+            <?php if ($mensagem): ?>
+                <p class="mensagem"><?= $mensagem ?></p>
+            <?php endif; ?>
+            <form method="POST" enctype="multipart/form-data" action="processa-empresa.php">
 
-    <div class="container">
-        <h1>Cadastro de Empresa</h1>
-        <?php if ($mensagem): ?>
-            <p class="mensagem"><?= $mensagem ?></p>
-        <?php endif; ?>
-        <form method="POST" enctype="multipart/form-data" action="processa-empresa.php">
+                <label>Logo / Foto da Empresa:</label>
+                <input type="file" name="foto" accept="image/*" onchange="previewImage(event)">
+                <small>Recomendado imagens 600x600</small>
+                <div id="preview-container">
+                    <img id="preview" src="#" alt="Preview" style="display:none;">
+                </div>
 
-            <label>Logo / Foto da Empresa:</label>
-            <input type="file" name="foto" accept="image/*" onchange="previewImage(event)">
-            <small>Recomendado imagens 600x600</small>
-            <div id="preview-container">
-                <img id="preview" src="#" alt="Preview" style="display:none;">
-            </div>
+                <label>Nome da Empresa:</label>
+                <input type="text" name="nome_empresa" required>
 
-            <label>Nome da Empresa:</label>
-            <input type="text" name="nome_empresa" required>
+                <label>Email:</label>
+                <input type="email" name="email_empresa" required>
 
-            <label>Email:</label>
-            <input type="email" name="email_empresa" required>
+                <label>CNPJ:</label>
+                <input type="text" name="cnpj" required>
 
-            <label>CNPJ:</label>
-            <input type="text" name="cnpj" required>
+                <label>Área de Atuação:</label>
+                <select name="area_atuacao" required>
+                    <option value="">Selecione...</option>
+                    <?php foreach ($areas as $area): ?>
+                        <option value="<?= $area['idarea'] ?>"><?= $area['nome_a'] ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-            <label>Área de Atuação:</label>
-            <select name="area_atuacao" required>
-                <option value="">Selecione...</option>
-                <?php foreach ($areas as $area): ?>
-                    <option value="<?= $area['idarea'] ?>"><?= $area['nome'] ?></option>
-                <?php endforeach; ?>
-            </select>
+                <label>Senha:</label>
+                <input type="password" name="senha_empresa" required>
 
-            <label>Senha:</label>
-            <input type="password" name="senha_empresa" required>
+                <label>Confirme a Senha:</label>
+                <input type="password" name="confirma_senha" required>
 
-            <label>Confirme a Senha:</label>
-            <input type="password" name="confirma_senha" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </main>
 
-            <button type="submit">Cadastrar</button>
-        </form>
-    </div>
 
     <?php include "../assets/Components/Footer.php"; ?>
 
