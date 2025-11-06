@@ -21,7 +21,7 @@ if (!isset($_SESSION))
 </style>
 <nav>
     <div class="navbar-logo">
-        <a href="feed.php"><img src="../img/logo.png" alt="Logo"></a>
+        <a href="painel-mentor.php"><img src="../img/logo.png" alt="Logo"></a>
     </div>
 
     <ul class="nav-links">

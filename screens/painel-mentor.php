@@ -100,6 +100,10 @@ $mentorias = MentoriaDAO::listarPorMentor($idmentor);
 
                     document.getElementById("modal-mentoria").style.display = "flex";
                 }
+
+                function fecharModal() {
+                    document.getElementById("modal-mentoria").style.display = "none";
+                }
             </script>
 
 
