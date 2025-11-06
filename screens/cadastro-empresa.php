@@ -28,9 +28,13 @@ unset($_SESSION['mensagem']);
             <?php endif; ?>
             <form method="POST" enctype="multipart/form-data" action="processa-empresa.php">
 
-                <label>Logo / Foto da Empresa:</label>
-                <input type="file" name="foto" accept="image/*" onchange="previewImage(event)">
+                <!-- Botão personalizado -->
+                <label for="foto" class="custom-file-label">Escolher imagem</label>
+                <input type="file" id="foto" name="foto" accept="image/*" onchange="previewImage(event)">
                 <small>Recomendado imagens 600x600</small>
+
+                <!-- Nome do arquivo e preview -->
+                <p id="file-name"></p>
                 <div id="preview-container">
                     <img id="preview" src="#" alt="Preview" style="display:none;">
                 </div>

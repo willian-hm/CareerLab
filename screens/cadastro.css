@@ -69,6 +69,40 @@ form select {
     transition: 0.2s;
 }
 
+/* Input de arquivo estilizado */
+form input[type="file"] {
+    display: none; /* Esconde o input padrão */
+}
+
+/* Label que simula o botão */
+.custom-file-label {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--azul);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.custom-file-label:hover {
+    background-color: var(--azul-escuro);
+    transform: scale(1.02);
+}
+
+/* Texto com nome do arquivo selecionado */
+#file-name {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 13px;
+    color: #444;
+}
+
+
 form input:focus,
 form textarea:focus,
 form select:focus {

@@ -20,49 +20,53 @@ unset($_SESSION['mensagem']);
 
 <body>
     <?php include "../assets/Components/NavBar.php"; ?>
-<main>
+    <main>
 
 
-    <div class="container">
-        <h1>Cadastro de Usuário</h1>
-        <?php if ($mensagem): ?>
-            <p class="mensagem"><?= $mensagem ?></p>
-        <?php endif; ?>
-        <form method="POST" enctype="multipart/form-data" action="processa-usuario.php">
+        <div class="container">
+            <h1>Cadastro de Usuário</h1>
+            <?php if ($mensagem): ?>
+                <p class="mensagem"><?= $mensagem ?></p>
+            <?php endif; ?>
+            <form method="POST" enctype="multipart/form-data" action="processa-usuario.php">
 
-            <label>Foto de Perfil:</label>
-            <input type="file" name="foto" accept="image/*" onchange="previewImage(event)">
-            <small>Recomendado imagens 600x600</small>
-            <div id="preview-container">
-                <img id="preview" src="#" alt="Preview" style="display:none;">
-            </div>
+                <!-- Botão personalizado -->
+                <label for="foto" class="custom-file-label">Escolher imagem</label>
+                <input type="file" id="foto" name="foto" accept="image/*" onchange="previewImage(event)">
+                <small>Recomendado imagens 600x600</small>
 
-            <label>Nome:</label>
-            <input type="text" name="nome_u" required>
+                <!-- Nome do arquivo e preview -->
+                <p id="file-name"></p>
+                <div id="preview-container">
+                    <img id="preview" src="#" alt="Preview" style="display:none;">
+                </div>
 
-            <label>Email:</label>
-            <input type="email" name="email_u" required>
+                <label>Nome:</label>
+                <input type="text" name="nome_u" required>
 
-            <label>Data de Nascimento:</label>
-            <input type="date" name="datanascimento_u" required>
+                <label>Email:</label>
+                <input type="email" name="email_u" required>
 
-            <label>Área de Especialização:</label>
-            <select name="areaespecializacao" required>
-                <option value="">Selecione...</option>
-                <?php foreach ($areas as $area): ?>
-                    <option value="<?= $area['idarea'] ?>"><?= $area['nome_a'] ?></option>
-                <?php endforeach; ?>
-            </select>
+                <label>Data de Nascimento:</label>
+                <input type="date" name="datanascimento_u" required>
 
-            <label>Senha:</label>
-            <input type="password" name="senha_u" required>
+                <label>Área de Especialização:</label>
+                <select name="areaespecializacao" required>
+                    <option value="">Selecione...</option>
+                    <?php foreach ($areas as $area): ?>
+                        <option value="<?= $area['idarea'] ?>"><?= $area['nome_a'] ?></option>
+                    <?php endforeach; ?>
+                </select>
 
-            <label>Confirme a Senha:</label>
-            <input type="password" name="confirma_senha" required>
+                <label>Senha:</label>
+                <input type="password" name="senha_u" required>
 
-            <button type="submit">Cadastrar</button>
-        </form>
-    </div>
+                <label>Confirme a Senha:</label>
+                <input type="password" name="confirma_senha" required>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
     </main>
 
     <?php include "../assets/Components/Footer.php"; ?>
