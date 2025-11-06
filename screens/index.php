@@ -1,150 +1,179 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CareerLab</title>
-    <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-    <?php
-    include '../assets/Components/NavBar.php';
-    ?>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareerLab</title>
+  <link rel="stylesheet" href="./index.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Transforme talentos em impacto real</h1>
-        <p>
-          Conectamos estudantes, mentores e empresas em desafios reais que geram
-          aprendizado, inovação e oportunidades.
-        </p>
-        <div class="cta">
-          <a href="#participar" class="btn">Começar agora</a>
-        </div>
-      </div>
-    </section>
+<body>
 
-    <!-- Sobre -->
-    <section id="sobre" class="section sobre">
-      <div class="sobre-content">
-        <div class="texto">
-          <h2>O que é o CareerLab?</h2>
-          <p>
-            O CareerLab é um ecossistema de desenvolvimento que aproxima
-            estudantes do mercado de trabalho através de projetos práticos,
-            mentorias e conexões com empresas reais.
-          </p>
-          <p>
-            Aqui, o aprendizado acontece na prática. Cada desafio é uma
-            oportunidade de evoluir, se destacar e ser descoberto.
-          </p>
-        </div>
-        <div class="imagem">
-          <img src="../img/teamwork.png" alt="Equipe colaborando" />
-        </div>
-      </div>
-    </section>
+  <?php include '../assets/Components/NavBar.php'; ?>
 
-    <!-- Missão -->
-    <section id="missao" class="section valores">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-container">
+      <h1>Forme talentos prontos para o mercado</h1>
+      <p>Com desafios reais, mentoria, ranking e contratação direta.</p>
+      <a href="#participar" class="btn-cta">Começar Agora</a>
+    </div>
+  </section>
+<!-- MISSÃO -->
+<section class="missao">
+  <div class="missao-grid">
+    
+    <div class="missao-img">
+      <img src="img/missão" alt="Pessoas colaborando">
+    </div>
+
+    <div class="missao-text">
+      <span class="mini-sub">Nós guiamos ideias para a realidade</span>
       <h2>Nossa Missão</h2>
-      <p class="sub">
-        Conectar talentos, ideias e oportunidades através da experiência
-        prática.
+      <p>
+        No CareerLab, acreditamos que o futuro se constrói com propósito, 
+        aprendizado e prática real. Nossa missão é capacitar talentos 
+        através de desafios guiados, mentoria e colaboração, criando pontes 
+        entre quem quer aprender e quem precisa de inovação.
       </p>
-      <div class="valores-grid">
-        <div class="valor">
-          <h3>🚀 Inovação</h3>
-          <p>
-            Estimulamos o protagonismo e a criatividade de quem busca fazer
-            diferente.
-          </p>
-        </div>
-        <div class="valor">
-          <h3>🤝 Colaboração</h3>
-          <p>
-            Conectamos mentes e propósitos — porque ninguém evolui sozinho.
-          </p>
-        </div>
-        <div class="valor">
-          <h3>🌱 Crescimento</h3>
-          <p>
-            Cada projeto é uma oportunidade de evoluir pessoal e
-            profissionalmente.
-          </p>
+     
+    </div>
+
+  </div>
+</section>
+
+ <section class="testemunhos">
+  <h2>Não confie só na nossa palavra</h2>
+  <p class="sub">Veja o que nossos parceiros têm a dizer</p>
+
+  <div class="testemunhos-container">
+    
+    <div class="testemunho-card">
+      <div class="quote">“</div>
+      <p class="texto">
+        A equipe do CareerLab transformou a forma como recrutamos talentos.
+        Os participantes chegam preparados e motivados, com experiências reais.
+      </p>
+      <div class="perfil">
+        <img src="img/user1.jpg" alt="Foto de Rafael Moreira">
+        <div>
+          <h4>Rafael Moreira</h4>
+          <span>CEO da TechSolutions</span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Histórias -->
-    <section id="hist" class="section historias">
-      <h2>Histórias que Inspiram</h2>
-      <p class="sub">
-        Pessoas que transformaram aprendizado em conquistas reais.
+    <div class="testemunho-card">
+      <div class="quote">“</div>
+      <p class="texto">
+        Mentorar no CareerLab foi uma das experiências mais gratificantes
+        da minha carreira. Ver o crescimento dos jovens é inspirador.
       </p>
-
-      <div class="cards">
-        <div class="card">
-          <img src="../img/aluno1.png" alt="Aluno CareerLab" />
-          <h3>Lucas Souza</h3>
-          <p>
-            “Consegui meu primeiro estágio graças ao desafio da CareerLab. A
-            experiência foi transformadora!”
-          </p>
-        </div>
-        <div class="card">
-          <img src="../img/mentora.png" alt="Mentora CareerLab" />
-          <h3>Daniela Costa</h3>
-          <p>
-            “Mentorar jovens talentos foi inspirador. A energia e vontade de
-            aprender me renovaram.”
-          </p>
-        </div>
-        <div class="card">
-          <img src="../img/empresa.png" alt="Empresa parceira" />
-          <h3>TechCorp</h3>
-          <p>
-            “Encontramos profissionais incríveis através da CareerLab. É um
-            ganho mútuo.”
-          </p>
+      <div class="perfil">
+        <img src="img/user2.jpg" alt="Foto de Julia Alves">
+        <div>
+          <h4>Julia Alves</h4>
+          <span>Product Manager na InnovateX</span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Participar -->
-    <section id="participar" class="section participar">
-      <h2>Quer fazer parte?</h2>
-      <p class="sub">
-        Escolha o seu perfil e entre nessa rede de aprendizado e oportunidades.
+    <div class="testemunho-card">
+      <div class="quote">“</div>
+      <p class="texto">
+        O CareerLab superou nossas expectativas — os projetos são criativos, 
+        práticos e os profissionais saem prontos para o mercado.
       </p>
-      <div class="caixas-perfil">
-        <a href="cadastro-usuario.php"
-            class="caixa-perfil">
-          <img src="../img/estudante.png" alt="Sou estudante" />
-          <h3>Sou Estudante</h3>
-          <p>Participe de desafios reais e destaque-se no mercado.</p>
-        </a>
-
-        <a href="cadastro-mentor.php"
-           class="caixa-perfil">
-          <img src="../img/mentor.png" alt="Sou mentor" />
-          <h3>Sou Mentor</h3>
-          <p>Compartilhe conhecimento e inspire a próxima geração.</p>
-        </a>
-
-        <a href="cadastro-empresa.php"
-           class="caixa-perfil">
-          <img src="../img/empresa-btn.png" alt="Sou empresa" />
-          <h3>Sou Empresa</h3>
-          <p>Descubra novos talentos e impulsione sua equipe com inovação.</p>
-        </a>
+      <div class="perfil">
+        <img src="img/user3.jpg" alt="Foto de Ricardo Lopes">
+        <div>
+          <h4>Ricardo Lopes</h4>
+          <span>CEO da BrightAI</span>
+        </div>
       </div>
-    </section>
+    </div>
 
+  </div>
+</section>
+
+<section class="faq">
+  <h2>Perguntas Frequentes</h2>
+
+  <div class="faq-container">
     <?php
-    include '../assets/Components/footer.php';
-    ?>
+    $faqs = [
+      [
+        "pergunta" => "O que é o CareerLab?",
+        "resposta" => "O CareerLab é uma plataforma que conecta talentos, mentores e empresas por meio de desafios práticos e projetos reais."
+      ],
+      [
+        "pergunta" => "Como posso participar?",
+        "resposta" => "Você pode se cadastrar como estudante, mentor ou empresa, preenchendo o formulário disponível na seção “Participar”."
+      ],
+      [
+        "pergunta" => "O CareerLab é gratuito?",
+        "resposta" => "Sim! A participação como estudante e mentor é totalmente gratuita. As empresas podem usar o sistema de forma personalizada."
+      ]
+    ];
 
-  </body>
-</html>
+    foreach ($faqs as $index => $faq) {
+      echo '
+      <div class="faq-item">
+        <input type="checkbox" id="faq' . $index . '">
+        <label class="faq-question" for="faq' . $index . '">
+          ' . htmlspecialchars($faq["pergunta"]) . '
+          <span class="arrow">+</span>
+        </label>
+        <div class="faq-answer">
+          <p>' . htmlspecialchars($faq["resposta"]) . '</p>
+        </div>
+      </div>';
+    }
+    ?>
+  </div>
+</section>
+
+  <!-- SEÇÃO RANKING E GAMIFICAÇÃO -->
+<section class="ranking-gamificacao">
+  <div class="ranking-header">
+    <h3>Sobre o CareerLab</h3>
+    <h2>Ranking e Gamificação</h2>
+    <p>Transformamos o aprendizado em uma experiência envolvente.  
+      Cada conquista conta pontos e o progresso dos participantes aparece em um ranking dinâmico e divertido!</p>
+  </div>
+
+  <div class="ranking-cards">
+    <div class="ranking-card">
+      <img src="img/icon-ranking.png" alt="Ícone de ranking">
+      <h4>🏆 Ranking Interativo</h4>
+      <p>Os alunos acumulam pontos ao completar desafios e subir no ranking, incentivando o crescimento e a competitividade saudável.</p>
+    </div>
+
+    <div class="ranking-card">
+      <img src="img/icon-badge.png" alt="Ícone de conquistas">
+      <h4>🎯 Conquistas e Selos</h4>
+      <p>A cada meta alcançada, o participante desbloqueia selos e medalhas que mostram suas habilidades e dedicação.</p>
+    </div>
+
+    <div class="ranking-card">
+      <img src="img/icon-game.png" alt="Ícone de gamificação">
+      <h4>💡 Aprendizado Gamificado</h4>
+      <p>Missões, níveis e recompensas tornam o aprendizado mais divertido, estimulando a participação ativa e contínua.</p>
+    </div>
+  </div>
+</section>
+
+  
+
+  <!-- CTA -->
+  <section id="participar" class="participar">
+    <h2>Pronto para Começar?</h2>
+
+    <div class="perfils">
+      <a href="cadastro-usuario.php" class="perfil">Sou Estudante</a>
+      <a href="cadastro-mentor.php" class="perfil">Sou Mentor</a>
+      <a href="cadastro-empresa.php" class="perfil">Sou Empresa</a>
+    </div>
+  </section>
+
+  <?php include '../assets/Components/footer.php'; ?>
+</body>
