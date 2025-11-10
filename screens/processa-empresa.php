@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['mensagem'] = $e->getMessage();
     }
 
-    header("Location: cadastro-empresa.php");
+    header("Location: login-empresa.php");
     exit;
 } else {
     header("Location: cadastro-empresa.php");

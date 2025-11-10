@@ -62,7 +62,7 @@ class UsuarioDAO
         $conexao = ConexaoBD::conectar();
 
         $sql = "
-            SELECT u.idusuario, u.nome_u AS nome, u.email_u, u.foto, u.bio_u AS bio,
+            SELECT u.idusuario, u.nome_u AS nome, u.email_u, u.foto,  u.exp, u.bio_u AS bio,
                    a.nome_a AS area, 
                    (SELECT COUNT(*) FROM seguido WHERE idseguido = u.idusuario) AS seguidores,
                    (SELECT COUNT(*) FROM seguido WHERE idusuario = u.idusuario) AS seguindo

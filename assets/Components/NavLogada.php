@@ -40,9 +40,8 @@
                 ?>
                 <img src="<?= $fotoPerfil ?>" alt="Foto do usuário" class="foto-perfilnav">
             <ul class="dropdown">
-                <li><b><?= htmlspecialchars($_SESSION['nomeusuario']) ?></b></li>
+                <li><b>@<?= htmlspecialchars($_SESSION['nomeusuario']) ?></b></li>
                 <li><a href="meu-perfil.php">Perfil</a></li>
-                <li><a href="configuracoes.php">Configurações</a></li>
                 <li><a href="logout.php">Sair</a></li>
             </ul>
         </li>

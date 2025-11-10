@@ -189,3 +189,38 @@ a.botao-excluir:hover {
 }
 
 
+.aluno {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 10px 15px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.info-aluno {
+    font-size: 0.95rem;
+}
+
+.botao-presenca {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.botao-presenca:hover {
+    background-color: #0056b3;
+}
+
+.botao-presenca.confirmado {
+    background-color: #28a745;
+}
+
+

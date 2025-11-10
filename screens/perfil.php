@@ -60,7 +60,11 @@ $usuario['seguindo'] = $usuario['seguindo'] ?? 0;
                     <h2><?= htmlspecialchars($usuario['nome']) ?></h2>
                     <p class="area"><?= htmlspecialchars($usuario['area']) ?></p>
                     <p class="bio"><?= htmlspecialchars($usuario['bio']) ?></p>
-                    <div class="seguidores">
+                    <div class="seguidores" style="font-weight: 600;">
+                        <!-- Novo: badge de XP -->
+                        <div class="xp-badge" >
+                            <?= (int) ($usuario['exp']) ?> XP
+                        </div>
                         <span><strong><?= $usuario['seguidores'] ?></strong>
                                 Seguidores</span>
                        <span><strong><?= $usuario['seguindo'] ?></strong>

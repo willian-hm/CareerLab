@@ -86,6 +86,22 @@ class MentoriaDAO
         return true;
     }
 
+    public static function listarInscritos($idmentoria)
+    {
+        $conexao = ConexaoBD::conectar();
+
+        $sql = "SELECT u.idusuario, u.nome_u, u.email_u, u.exp
+            FROM inscrevermentoria i
+            JOIN usuario u ON u.idusuario = i.idusuario
+            WHERE i.idmentoria = ?";
+        $stmt = $conexao->prepare($sql);
+        $stmt->execute([$idmentoria]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+
 
 
 }

@@ -1,7 +1,7 @@
 <?php
 include_once "../assets/incs/valida-sessao-mentor.php";
 require_once "../assets/src/MentorDAO.php";
-require_once "../assets/src/MentoriaDAO.php"; // novo DAO
+require_once "../assets/src/MentoriaDAO.php";
 
 $mentor = MentorDAO::buscarPorId($idmentor);
 $mentorias = MentoriaDAO::listarPorMentor($idmentor);
@@ -41,7 +41,7 @@ $mentorias = MentoriaDAO::listarPorMentor($idmentor);
             <?php if (count($mentorias) > 0): ?>
                 <div class="cards-mentorias">
                     <?php foreach ($mentorias as $m): ?>
-                        <div class="card-mentoria" onclick="abrirModal(<?= htmlspecialchars(json_encode($m)) ?>)">
+                        <div class="card-mentoria" onclick='abrirModal(<?= json_encode($m) ?>)'>
                             <h3><?= htmlspecialchars($m['titulo'] ?? 'Sem título') ?></h3>
                             <p><strong>Data:</strong> <?= htmlspecialchars($m['data'] ?? '—') ?></p>
                             <p><strong>Horário:</strong> <?= htmlspecialchars($m['horario'] ?? '—') ?></p>
@@ -71,47 +71,20 @@ $mentorias = MentoriaDAO::listarPorMentor($idmentor);
 
                     <a id="botao-editar" href="#" class="botao-editar">Editar</a>
                     <a id="botao-excluir" href="#" class="botao-excluir">Excluir Mentoria</a>
+
+                    <h3>Alunos inscritos</h3>
+                    <div id="modal-alunos">
+                        <p>Carregando...</p>
+                    </div>
                 </div>
             </div>
-
-            <script>
-                function abrirModal(mentoria) {
-                    document.getElementById("modal-titulo").innerText = mentoria.titulo;
-                    document.getElementById("modal-area").innerText = mentoria.nome_area || 'Não informada';
-                    document.getElementById("modal-data").innerText = mentoria.data || '—';
-                    document.getElementById("modal-horario").innerText = mentoria.horario || '—';
-                    document.getElementById("modal-local").innerText = mentoria.local || '—';
-                    document.getElementById("modal-vagas").innerText = mentoria.vaga_limite || '—';
-                    document.getElementById("modal-status").innerText = mentoria.status || '—';
-                    document.getElementById("modal-descricao").innerText = mentoria.descricao || '—';
-
-                    // editar
-                    document.getElementById("botao-editar").href = "editar-mentoria.php?id=" + mentoria.idmentoria;
-
-                    // excluir — confirma antes de ir
-                    document.getElementById("botao-excluir").href = "processa-exclusao-mentoria.php?id=" + mentoria.idmentoria;
-                    document.getElementById("botao-excluir").onclick = function (e) {
-                        if (!confirm('Tem certeza que deseja excluir esta mentoria?')) {
-                            e.preventDefault();
-                            return false;
-                        }
-                        return true;
-                    };
-
-                    document.getElementById("modal-mentoria").style.display = "flex";
-                }
-
-                function fecharModal() {
-                    document.getElementById("modal-mentoria").style.display = "none";
-                }
-            </script>
-
-
-
         </div>
     </main>
 
     <?php include "../assets/Components/Footer.php"; ?>
+
+    <script src="painel-mentor.js"></script>          
+
 </body>
 
 </html>
