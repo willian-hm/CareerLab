@@ -120,3 +120,79 @@ main p {
         text-align: center;
     }
 }
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-conteudo {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    animation: fadeIn 0.4s ease;
+    text-align: left;
+    position: relative;
+}
+
+.modal-conteudo h2 {
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+.modal-conteudo p {
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.fechar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #555;
+}
+
+.form-desafio {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-desafio input,
+.form-desafio textarea {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-desafio button {
+    margin-top: 10px;
+    align-self: center;
+}
+
+.orientacao-geral {
+    background: #f0f4ff;
+    border-left: 5px solid #2563eb;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
