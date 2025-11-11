@@ -1,5 +1,6 @@
 /* ===========================
    AREA-EMPRESA.CSS
+   Estilos principais da área da empresa
    =========================== */
 
 /* Layout base */
@@ -23,21 +24,23 @@ main {
     animation: fadeIn 0.6s ease;
 }
 
-/* Título */
+/* Título da página */
 main h1 {
     color: #222;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 10px;
     letter-spacing: 0.5px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
+/* Parágrafo de descrição */
 main p {
     color: #666;
     font-size: 1.1rem;
     margin-bottom: 40px;
 }
 
-/* Botões de ação */
+/* Botões principais da área */
 .botoes-area {
     display: flex;
     justify-content: center;
@@ -47,7 +50,7 @@ main p {
 }
 
 .botao-area {
-    background-color: #2563eb; /* azul elegante */
+    background-color: #1f3b6e; /* azul elegante */
     color: #fff;
     text-decoration: none;
     padding: 14px 28px;
@@ -58,12 +61,12 @@ main p {
 }
 
 .botao-area:hover {
-    background-color: #1e40af;
+    background-color: #2b4c8a;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
 }
 
-/* Cards (exemplo para informações da empresa) */
+/* Grid de cards informativos */
 .cards-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -95,7 +98,7 @@ main p {
     font-size: 0.95rem;
 }
 
-/* Animação suave */
+/* Animação suave de entrada */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -108,7 +111,7 @@ main p {
     }
 }
 
-/* Responsividade */
+/* Responsividade para telas menores */
 @media (max-width: 768px) {
     main {
         padding: 30px 20px;
@@ -121,7 +124,7 @@ main p {
     }
 }
 
-/* Modal */
+/* Modal de exibição */
 .modal {
     display: none;
     position: fixed;
@@ -132,6 +135,7 @@ main p {
     z-index: 999;
 }
 
+/* Caixa interna do modal */
 .modal-conteudo {
     background: #fff;
     padding: 30px;
@@ -144,7 +148,7 @@ main p {
 }
 
 .modal-conteudo h2 {
-    color: #1e3a8a;
+    color: #1f3b6e;
     margin-bottom: 10px;
 }
 
@@ -153,6 +157,7 @@ main p {
     margin-bottom: 10px;
 }
 
+/* Botão de fechar modal */
 .fechar {
     position: absolute;
     top: 10px;
@@ -162,6 +167,7 @@ main p {
     color: #555;
 }
 
+/* Formulário de desafios */
 .form-desafio {
     display: flex;
     flex-direction: column;
@@ -185,9 +191,10 @@ main p {
     align-self: center;
 }
 
+/* Bloco de avisos gerais */
 .orientacao-geral {
     background: #f0f4ff;
-    border-left: 5px solid #2563eb;
+    border-left: 5px solid #1f3b6e;
     padding: 15px 20px;
     border-radius: 10px;
     margin-bottom: 40px;
@@ -195,4 +202,3 @@ main p {
     font-size: 1rem;
     line-height: 1.5;
 }
-

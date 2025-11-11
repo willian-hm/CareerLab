@@ -64,6 +64,11 @@ body {
     background-color: #f4f6fa;
     font-family: "Poppins", sans-serif;
 }
+/* AQUI você adiciona */
+.btn-primary {
+    background-color: #082f6d !important;
+    border-color: #082f6d !important;
+}
 .container { margin-top: 30px; }
 .card-mentoria {
     background: white;
@@ -80,8 +85,8 @@ body {
     cursor: not-allowed;
     opacity: 0.7;
 }
-.status-vagas { font-size: 0.9em; font-weight: bold; color: #0d6efd; }
-.status-cheia { color: #dc3545; }
+.status-vagas { font-size: 0.9em; font-weight: bold; color: #0a3a8a; }
+.status-cheia { color: #a02330ff; }
 .nav-tabs .nav-link.active { font-weight: bold; color: #0d6efd !important; }
 </style>
 </head>
@@ -91,7 +96,7 @@ body {
 
 <main>
 <div class="container">
-    <h2 class="text-center mb-4">Mentorias</h2>
+    <h2 class="text-center mb-4 fw-bold display-6">Mentorias</h2>
 
     <?php if (isset($_SESSION['mensagem'])): ?>
         <div class="alert alert-info text-center">

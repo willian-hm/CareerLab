@@ -23,13 +23,13 @@ if ($filtro === 'meus') {
             background: #eee; padding: 10px 20px; border-radius: 10px; margin: 5px; 
             border: none; cursor: pointer; font-weight: bold;
         }
-        .botao-filtro.ativo { background: #007bff; color: white; }
+        .botao-filtro.ativo { background: #1f3b6e; color: white; }
         .card-desafio {
             background: #fafafa; border: 1px solid #ccc; border-radius: 10px;
             padding: 20px; margin: 15px auto; max-width: 700px;
         }
         .botao-inscrever, .botao-cancelar {
-            background: #007bff; color: white; border: none; padding: 10px 20px;
+            background: #1f3b6e; color: white; border: none; padding: 10px 20px;
             border-radius: 8px; cursor: pointer; margin-top: 10px;
         }
         .botao-cancelar { background: #dc3545; }
